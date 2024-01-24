@@ -40,7 +40,6 @@ const Similar = ({ loading, setLoading }) => {
                             <h3>{selectedArticle.title}</h3>
                             <img src={selectedArticle.urlToImage} alt='active-card' />
                             <h2><span>Author:</span> {selectedArticle.author}</h2>
-                            <p className='content'><span>Content</span>: {selectedArticle.description}</p>
                             <p className='description'><span>Description</span>: {selectedArticle.description}</p>
                             <h5 className="time">📆 {selectedArticle.publishedAt.slice(0, 10)}</h5>
                             <Link to={selectedArticle.url} className="active-links" target='_blank'><span>Links</span>: More Information</Link>
