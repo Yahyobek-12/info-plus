@@ -50,7 +50,7 @@ const Tech = () => {
             </>
           ) : (
             <>
-              {limitData.map((item) => (
+              {limitData.map(item => (
                 <div className="limit-card" key={uuidv4()}>
                   <img src={item.urlToImage} alt={item.athor} />
                   <p>{item.title.slice(0, 100)}</p>

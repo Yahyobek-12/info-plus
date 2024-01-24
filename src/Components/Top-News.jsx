@@ -29,7 +29,7 @@ const TopNews = () => {
 
       ) : (
         <>
-            {topNews.map((topnews) => (
+            {topNews.map(topnews => (
                 <div className="top-news-card" key={uuidv4()}>
                     <img src={topnews.urlToImage} alt={topnews.title.slice(0, 5)} />
                     <p>📅 {topnews.publishedAt.slice(0, 10)}</p>

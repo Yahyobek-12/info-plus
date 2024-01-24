@@ -28,7 +28,7 @@ const Similar = ({ loading, setLoading }) => {
                 <img src={loadingLogo} alt="loading..." width='350px' height='250px' />
             ) : (
                 <>
-                    {similarData.map((item) => (
+                    {similarData.map(item => (
                         <div className="similar-card" key={uuidv4()}>
                             <img src={item.urlToImage} alt={item.title} />
                             <h3>{item.title}</h3>

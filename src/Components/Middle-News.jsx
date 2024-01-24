@@ -23,7 +23,7 @@ const MiddleNews = () => {
         <img src={loaderLogo} alt='loader-logo' width='350px' style={{ marginLeft: '-2rem' }} />
     ) : (
       <>
-          {middleNews.map((middlenews) => (
+          {middleNews.map(middlenews => (
               <div className="top-news-card" key={uuidv4()}>
                   <img src={middlenews.urlToImage} alt={middlenews.title} />
                   <p>📅 {middlenews.publishedAt.slice(0, 10)}</p>
