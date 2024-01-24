@@ -13,8 +13,8 @@ const App = () => {
       background: '#2970ff', transformOrigin: '0%'}} className='motion'></motion.div>
       <Navbar />
       <Routes>
-        {/* <Route path='' element={<Home />} />
-        <Route path='tech' element={<Tech />} /> */}
+        <Route path='' element={<Home />} />
+        <Route path='tech' element={<Tech />} />
       </Routes>
     </div>
   )
