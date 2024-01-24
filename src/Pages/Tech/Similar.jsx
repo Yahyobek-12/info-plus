@@ -1,21 +1,24 @@
+import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import loadingLogo from '../../Images/loader.gif';
-import { IoReaderOutline, IoCloseCircle  } from "react-icons/io5";
+import { IoReaderOutline, IoCloseCircle } from "react-icons/io5";
 
 const Similar = ({ loading, setLoading }) => {
     const [similarData, setSimilarData] = useState([]);
     const [selectedArticle, setSelectedArticle] = useState(null);
 
     useEffect(() => {
-        fetch('https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=3bae03128ef34b1d99d8968de15c32dd')
-            .then((response) => response.json())
-            .then(data => {
+        axios.get('https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=3bae03128ef34b1d99d8968de15c32dd')
+            .then(response => {
                 setLoading(false);
-                console.log(data.articles);
-                setSimilarData(data.articles);
+                console.log(response.data.articles);
+                setSimilarData(response.data.articles);
             })
+            .catch(error => {
+                console.log(error);
+            });
     }, [setLoading]);
 
     const handleReadClick = (article) => {
@@ -43,7 +46,7 @@ const Similar = ({ loading, setLoading }) => {
                             <p className='description'><span>Description</span>: {selectedArticle.description}</p>
                             <h5 className="time">📆 {selectedArticle.publishedAt.slice(0, 10)}</h5>
                             <Link to={selectedArticle.url} className="active-links" target='_blank'><span>Links</span>: More Information</Link>
-                            <IoCloseCircle  onClick={() => setSelectedArticle(null)} className='remove-active' />
+                            <IoCloseCircle onClick={() => setSelectedArticle(null)} className='remove-active' />
                         </div>
                     )}
                 </>

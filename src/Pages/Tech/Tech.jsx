@@ -1,37 +1,41 @@
-import '../../styles/Tech.css'
-import Similar from './Similar'
-import { v4 as uuidv4 } from 'uuid'
-import CountUp from 'react-countup'
-import { FaLink } from "react-icons/fa"
-import { Link } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import loadingLogo from '../../Images/loader.gif'
+import axios from 'axios';
+import '../../styles/Tech.css';
+import Similar from './Similar';
+import { v4 as uuidv4 } from 'uuid';
+import CountUp from 'react-countup';
+import { FaLink } from "react-icons/fa";
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import loadingLogo from '../../Images/loader.gif';
+ 
 
 const Tech = () => {
-  const [limitData, setLimitData] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [limitData, setLimitData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('https://newsapi.org/v2/top-headlines?country=in&category=technology&apiKey=3bae03128ef34b1d99d8968de15c32dd&pageSize=3')
-      .then((response) => response.json())
-      .then(data => {
-        setLoading(false)
-        console.log(data.articles)
-        setLimitData(data.articles)
+    axios.get('https://newsapi.org/v2/top-headlines?country=in&category=technology&apiKey=3bae03128ef34b1d99d8968de15c32dd&pageSize=3')
+      .then(response => {
+        setLoading(false);
+        console.log(response.data.articles);
+        setLimitData(response.data.articles);
       })
-  }, [])
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <div className='tech'>
       <div className="top-tech">
         <div className="inside-top-tech">
-            <div className="top-tech-txt">
-                <h1>Creating a Better Solution</h1>
-                <h3>IT Solutions.</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam magni assumenda quam porro, quae cumque?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam magni assumenda quam porro, quae cumque?</p>
-                <Link to='https://www.google.com' target='_blank'><button className="btn-more">Contact Us</button></Link>
-            </div>
+          <div className="top-tech-txt">
+            <h1>Creating a Better Solution</h1>
+            <h3>IT Solutions.</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam magni assumenda quam porro, quae cumque?</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam magni assumenda quam porro, quae cumque?</p>
+            <Link to='https://www.google.com' target='_blank'><button className="btn-more">Contact Us</button></Link>
+          </div>
         </div>
       </div>
 
@@ -68,7 +72,7 @@ const Tech = () => {
         <Similar loading={loading} setLoading={setLoading} />
       </div>
     </div>
-  )
+  );
 }
 
-export default Tech
+export default Tech;
