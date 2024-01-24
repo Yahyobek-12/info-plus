@@ -1,20 +1,20 @@
 import 'swiper/css';
+import axios from 'axios';
 import '../styles/Home.css'
 import 'swiper/css/pagination';
 import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom';
 import loaderLogo from '../Images/loader.gif'
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
 const TopNews = () => {
     const [topNews, setTopNews] = useState([])
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        fetch('https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=3bae03128ef34b1d99d8968de15c32dd')
-            .then((response) => response.json())
-            .then(data => {
-                setTopNews(data.articles)
+        axios.get('https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=3bae03128ef34b1d99d8968de15c32dd')
+            .then(response => {
+                setTopNews(response.data.articles)
                 setLoading(false)
             })
             .catch(error => {
@@ -43,4 +43,4 @@ const TopNews = () => {
   )
 }
 
-export default TopNews
+export default TopNews;
